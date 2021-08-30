@@ -1,0 +1,33 @@
+<app-student-details [data]='data' [editMode]="modeOn" [changeUpdateValue]="updatedValues"
+(newItemEvent)="addItem($event)"></app-student-details>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th scope="col">Name</th>   
+            <th scope="col">Email Id</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Year</th>
+            <th scope="col">State</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let stud of students let i = index" >
+            <th>{{i+1}}</th>
+            <th scope="row">{{stud.name}} </th> 
+            <th scope="row">{{stud.email}} </th>
+            <th scope="row">{{stud.genders}} </th>
+            <th scope="row">{{stud.toppings}} </th> 
+            <th scope="row">{{stud.selectstate}} </th>
+            <th scope="row"> <button mat-button color="accent"
+              (click)="updateInfo(i+1,i)" >edit</button> </th>
+             <th scope="row"> <button mat-button color="warn"
+              (click)="deleteInfo(i+1,i)" >Delete</button> </th>
+            
+        </tr>
+    </tbody>
+</table>
