@@ -12,17 +12,20 @@ export class StudentDetailsComponent implements OnInit ,OnChanges{
   @Input() editMode :boolean=true;
   @Input() changeUpdateValue:any;
   @Output() newItemEvent = new EventEmitter;
+  recordId:number=0;
   editToupdate:any;
-  email = new FormControl('', [Validators.required, Validators.email]);
+  userName='';
   subscription = new Subscription
   profileForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
+    name: new FormControl('',Validators.required),
+    // email: new FormControl(''),
+    email :new FormControl('', [Validators.required, Validators.email]),
     genders: new FormControl(''),
     toppings: new FormControl(''),
     selectstate: new FormControl(''),
    
   });
+  submitted: boolean=false;
 ngOnChanges(){
    console.log('student comp data',this.data);
 // console.log(this.temp);
@@ -58,51 +61,41 @@ this.profileForm.patchValue(this.data)
     console.log(this.data);
     
     }
-  onSubmit() {
-     if(this.editMode){
+  onSubmit(recordId:any) {
+    this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.profileForm.invalid) {
+            return;
+        }
+     else if(this.editMode){
      console.log("updated",this.profileForm.value);   
-    //   this.profileForm = new FormGroup({
-    //   name: new FormControl('',[]),
-    //   email: new FormControl(''),
-    //   genders: new FormControl(''),
-    //   toppings: new FormControl(''),
-    //   selectstate: new FormControl(''),
-    
-    // })
-     
+     this.recordId=this.recordId+0;
+     this.profileForm.value['recordId']=this.recordId;
+     this.newItemEvent.emit(this.profileForm.value);
      this.profileForm.reset()
+     this.editMode=!this.editMode;
     }
     else{
-    console.log(this.profileForm.value)
+
+    //console.log(this.profileForm.value)
+    this.recordId=this.recordId+1;
+    this.profileForm.value['recordId']=this.recordId;
     this.msg.sendMsg.next(this.profileForm.value)
-    console.log(this.send)
+    
+    //console.log(this.send)
     this.profileForm.reset()
     }
     
   }
+  get f() { return this.profileForm.controls; }
   addNewItem() {
-    this.newItemEvent.emit();
+    // this.newItemEvent.emit(this.profileForm.value);
   }
-  // onUpdate(profileForm: { value: any; reset: () => void; }) {
-  //   let values = profileForm.value;
-  //   console.log(values);
-  //   let obj: any = {
-  //     studentId: values.id,
-  //     name: values.name,
-  //     state: values.salary,
-  //     abc: values.department
-  //   };
-
-  //   this.rows.push(obj);
-  //   profileForm.reset();
-
-  // }
+  
   
   
   }
-  
-// function result(result: any) {
-//   throw new Error('Function not implemented.');
-// }
+ 
 
 

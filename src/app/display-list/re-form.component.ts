@@ -8,14 +8,12 @@ import { TempServiceService } from '../shared/temp-service.service';
   styleUrls: ['./re-form.component.scss']
 })
 export class ReFormComponent implements OnInit, OnDestroy {
+  id:any;
   students: any = [];
   data: any;
   modeOn = false;
   updatedValues = [];
-  items = ['item1', 'item2', 'item3', 'item4'];
-
-  stud = ["name", "email", "Gender", "Year", "State"]
-
+  items :any=[]
   subscription: any;
   send: any;
 
@@ -34,19 +32,34 @@ export class ReFormComponent implements OnInit, OnDestroy {
     this.modeOn = true;
     this.data = this.students[index]
     console.log('data', this.data);
-
-
-
-
   }
   deleteInfo(i: any, index: any) {
     this.students.splice(index, 1)
-    this.students.reset();
+    // this.students.reset();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  addItem(newItem: string) {
-    this.items.push(newItem);
+  addItem(newItem: any) {
+    // this.items.push(newItem);
+    console.log("hi",newItem)
+    console.log("myitems",this.students)
+    if(this.students && this.modeOn===true){
+     this.id=this.students.findIndex((search:any)=>search.recordId==newItem.recordId)
+     
+      console.log("myid",this.id);
+      this.students.splice(this.id, 1, newItem);
+      console.log("hello",newItem)
+    
   }
+    else{
+      this.items.push(newItem);
+      console.log("hi",newItem)
+    }
+      
+    
+  }
+ 
 }
+
+
