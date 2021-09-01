@@ -13,6 +13,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     MatRadioModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
 
   ],
   providers: [],
