@@ -18,7 +18,6 @@ export class StudentDetailsComponent implements OnInit ,OnChanges{
   subscription = new Subscription
   profileForm = new FormGroup({
     name: new FormControl('',Validators.required),
-    // email: new FormControl(''),
     email :new FormControl('', [Validators.required, Validators.email]),
     genders: new FormControl(''),
     toppings: new FormControl(''),

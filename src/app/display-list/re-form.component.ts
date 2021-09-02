@@ -1,6 +1,37 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TempServiceService } from '../shared/temp-service.service';
+export interface students {
+  name: string;
+  email: any;
+  recordId: number;
+  genders: any;
+  toppings:any;
+  selectstate:string
+  edit:any
+}
 
+const ELEMENT_DATA: students[] = [
+  // {position: 1, name: 'manasi', email: 'mansi@gmail.com', id: 1 , gender: 'female',
+  // toppings:'FY'},
+  {
+    name: "manasi",
+    email: "mansi@gmail.com",
+    recordId: 1,
+    genders: 'female',
+    toppings: ["SY"],
+    selectstate: "California",
+    edit:"<button>edit()</button>"
+   },
+   {
+    name: "prjkta",
+    email: "prj@gmail.com",
+    recordId: 2,
+    genders: 'female',
+    toppings: ["SY"],
+    selectstate: "California",
+    edit:"<button>edit()</button>"
+   },
+];
 
 @Component({
   selector: 'app-re-form',
@@ -16,7 +47,8 @@ export class ReFormComponent implements OnInit, OnDestroy {
   items :any=[]
   subscription: any;
   send: any;
-
+  displayedColumns: string[] = [ 'name', 'email','recordId', 'genders','toppings','selectstate'];
+  dataSource:any= ELEMENT_DATA
 
   constructor(public recMsg: TempServiceService) {
   }
@@ -25,6 +57,8 @@ export class ReFormComponent implements OnInit, OnDestroy {
     this.subscription = this.recMsg.sendMsg.subscribe((msgToShow: any) => {
       console.log("receivvvved", msgToShow)
       this.students.push(msgToShow)
+      this.dataSource=this.students;
+      console.log(this.students)
 
     })
   }

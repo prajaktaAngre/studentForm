@@ -30,3 +30,24 @@
         </tr>
     </tbody>
 </table>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+    <ng-container *ngFor="let stud of displayedColumns  let i=index">
+    
+      <ng-container [matColumnDef]="stud" >
+        <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[stud]}}  </td>
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+      <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </ng-container>
+      
+    </ng-container>
+    
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
