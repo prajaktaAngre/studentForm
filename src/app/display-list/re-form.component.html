@@ -1,6 +1,7 @@
-<app-student-details [data]='data' [editMode]="modeOn" [changeUpdateValue]="updatedValues"
+<div class=""><app-student-details [data]='data' [editMode]="modeOn" [changeUpdateValue]="updatedValues"
 (newItemEvent)="addItem($event)"></app-student-details>
-<table class="table table-bordered">
+</div>
+<!-- <table class="table table-bordered">
     <thead>
         <tr>
             <th>Id</th>
@@ -28,4 +29,74 @@
             
         </tr>
     </tbody>
-</table>
+</table> -->
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+    <ng-container *ngFor="let stud of displayedColumns  let i=index">
+    
+      <ng-container [matColumnDef]="stud" >
+        <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[stud]}}  </td>
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+      <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </ng-container>
+      
+    </ng-container>
+    
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+ 
+      <ng-container *ngFor="let stud of displayedColumns  let i=index">
+        {{stud}}abc
+        <ng-container *ngIf="stud!=='edit';else edittem ">
+          <ng-container *ngIf="stud!=='delete';else deleteitem ">
+        <ng-container [matColumnDef]="stud" >
+          <th mat-header-cell *matHeaderCellDef> {{stud}} </th>   
+          <td mat-cell *matCellDef="let element" > {{element[stud]}}  </td>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+             
+          <ng-template #edittem>
+            <ng-container [matColumnDef]="stud" >
+              <th mat-header-cell *matHeaderCellDef> {{stud}} </th>   
+          <td mat-cell *matCellDef ="let itemb">
+            <button type="button" mat-raised-button color="primary" 
+            (click)="updateInfo(itemb)">{{itemb.edit}}</button>             
+          </td>
+        </ng-container>
+        </ng-template>
+         <ng-template #deleteitem>
+          <ng-container [matColumnDef]="stud" >
+            <th mat-header-cell *matHeaderCellDef> {{stud}} </th>   
+        <td mat-cell *matCellDef ="let itemd">
+          <button type="button" mat-raised-button color="primary" 
+          (click)="deleteInfo(i,im)">{{itemd.delete}}</button>             
+        </td>
+      </ng-container>
+      </ng-template>
+    
+          <!-- <ng-container *ngFor="let stud of displayedColumns  let i=index">
+            <div *ngIf="stud==modeOn;else deleteitem">
+            <ng-container [matColumnDef]="stud" >  
+      <th mat-header-cell *matHeaderCellDef> {{stud}} </th> 
+          <td mat-cell *matCellDef ="let itemd">
+            <button type="button" mat-button color="primary" 
+            (click)="deleteInfo(i,in)">{{itemd.delete}}</button>       
+                 
+          </td>
+    </ng-container>
+    </div>
+    </ng-container> -->
+       
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>

@@ -7,30 +7,29 @@ import { TempServiceService } from '../shared/temp-service.service';
   templateUrl: './student-details.component.html',
   styleUrls: ['./student-details.component.scss']
 })
-export class StudentDetailsComponent implements OnInit ,OnChanges{
-  @Input()data:any={}
-  @Input() editMode :boolean=true;
-  @Input() changeUpdateValue:any;
+export class StudentDetailsComponent implements OnInit, OnChanges {
+  @Input() data: any = {}
+  @Input() editMode: boolean = true;
+  @Input() changeUpdateValue: any;
   @Output() newItemEvent = new EventEmitter;
-  recordId:number=0;
-  editToupdate:any;
+  recordId: number = 0;
+  editToupdate: any;
+  userName = '';
   subscription = new Subscription
   profileForm = new FormGroup({
-    name: new FormControl('',Validators.required),
-    // email: new FormControl(''),
-    email :new FormControl('', [Validators.required, Validators.email]),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     genders: new FormControl(''),
     toppings: new FormControl(''),
-    selectstate: new FormControl(''),
-   
+    selectstate: new FormControl('')
   });
- 
-ngOnChanges(){
-   console.log('student comp data',this.data);
-// console.log(this.temp);
+  submitted: boolean = false;
+  ngOnChanges() {
+    console.log('student comp data', this.data);
+    // console.log(this.temp);
 
-this.profileForm.patchValue(this.data)
-}
+    this.profileForm.patchValue(this.data)
+  }
   toppings = new FormControl();
   toppingList: string[] = ['FY', 'SY', 'TY', 'BE', 'B.Tech'];
   states: string[] = [
@@ -44,8 +43,8 @@ this.profileForm.patchValue(this.data)
   ];
   send: any;
   rows: any;
-  
-  
+
+
 
   getErrorMessage() {
     // if (this.email.hasError('required')) {
@@ -54,40 +53,40 @@ this.profileForm.patchValue(this.data)
 
     // return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-  constructor(public msg:TempServiceService) { }
+  constructor(public msg: TempServiceService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     console.log(this.data);
-    
-    }
-  onSubmit(recordId:any) {
-     if(this.editMode){
-     console.log("updated",this.profileForm.value);   
-     this.recordId=this.recordId+0;
-     this.profileForm.value['recordId']=this.recordId;
-     this.newItemEvent.emit(this.profileForm.value);
-     this.profileForm.reset()
-     this.editMode=!this.editMode;
-    }
-    else{
 
-    //console.log(this.profileForm.value)
-    this.recordId=this.recordId+1;
-    this.profileForm.value['recordId']=this.recordId;
-    this.msg.sendMsg.next(this.profileForm.value)
-    
-    //console.log(this.send)
-    this.profileForm.reset()
+  }
+  onSubmit(recordId: any) {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.profileForm.invalid) {
+      return;
     }
-    
+    else if (this.editMode) {
+      Object.assign(this.data, this.profileForm.value);
+      this.newItemEvent.emit(this.data);
+      this.profileForm.reset()
+      this.editMode = !this.editMode;
+    }
+    else {
+
+      //console.log(this.profileForm.value)
+      this.recordId = this.recordId + 1;
+      this.profileForm.value['recordId'] = this.recordId;
+      this.msg.sendMsg.next(this.profileForm.value)
+
+      //console.log(this.send)
+      this.profileForm.reset()
+    }
+
   }
-  addNewItem() {
-    // this.newItemEvent.emit(this.profileForm.value);
-  }
-  
-  
-  
-  }
- 
+  get f() { return this.profileForm.controls; }
+
+}
+
 
 
