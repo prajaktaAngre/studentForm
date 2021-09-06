@@ -15,6 +15,8 @@ export class StudentDetailsComponent implements OnInit, OnChanges {
   recordId: number = 0;
   editToupdate: any;
   userName = '';
+  edit:any;
+  delete:any;
   subscription = new Subscription
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),

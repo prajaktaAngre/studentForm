@@ -16,11 +16,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import { BTableComponent } from './b-table/b-table.component';
 @NgModule({
   declarations: [
     AppComponent,
     ReFormComponent,
-    StudentDetailsComponent
+    StudentDetailsComponent,
+    BTableComponent
   ],
   imports: [
     BrowserModule,

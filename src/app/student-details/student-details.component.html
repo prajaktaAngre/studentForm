@@ -1,15 +1,14 @@
 <mat-card>
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit(recordId)">
         <div class="example-container">
-            <mat-form-field appearance="fill" class="w-50">
+            <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Enter your Name</mat-label>
                 <input matInput formControlName="name" required>
             </mat-form-field><br>
-            <mat-form-field appearance="fill" class="w-50">
+            <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Enter your email</mat-label>
-                <input matInput placeholder="pat@example.com" formControlName="email" required 
-                name="email" id="email" [(ngModel)]="userName"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <input matInput placeholder="pat@example.com" formControlName="email" required name="email" id="email"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                     <div *ngIf="f.email.errors.required">Email is required</div>
                     <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
@@ -26,7 +25,7 @@
             </mat-radio-group>
         </div>
         <div class="row">
-            <div class="col-3">
+            <div class="col-12">
                 <h4>Select Year</h4>
                 <mat-form-field appearance="fill" class="w-100">
                     <mat-label>Select Year</mat-label>
@@ -35,25 +34,21 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="col-3">
+            <div class="col-12">
                 <h4>Select State</h4>
                 <mat-form-field appearance="fill" class="w-100">
                     <mat-label>State</mat-label>
-                    <mat-select formControlName="selectstate" required>
+                    <mat-select formControlName="selectstate" required [(ngModel)]="userName">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
         </div>
-        
-        <button mat-button color="primary" type="submit"
-        [disabled]="userName === ''">
+
+        <button mat-button color="primary" type="submit" [disabled]="userName === ''">
             {{editMode ? 'update' : 'submit'}}
-    
         </button>
-        <!-- <form (ngSubmit)="onUpdate(profileForm)" ></form> -->
     </form>
-    </mat-card>
-    <br>
-    
+</mat-card>
+<br>
