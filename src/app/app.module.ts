@@ -17,12 +17,14 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { BTableComponent } from './b-table/b-table.component';
+import { ReusableTableComponent } from './reusable-table/reusable-table.component';
 @NgModule({
   declarations: [
     AppComponent,
     ReFormComponent,
     StudentDetailsComponent,
-    BTableComponent
+    BTableComponent,
+    ReusableTableComponent
   ],
   imports: [
     BrowserModule,
