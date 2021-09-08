@@ -55,6 +55,7 @@ export class ReFormComponent implements OnInit, OnDestroy {
   displayedColumns: any[] = ['name', 'email', 'recordId', 'genders', 'toppings', 
   'selectstate','edit','delete'];
   dataSource: any = ELEMENT_DATA
+
  
   row: any;
   constructor(public recMsg: TempServiceService) {
@@ -65,6 +66,9 @@ export class ReFormComponent implements OnInit, OnDestroy {
       console.log("receivvvved", msgToShow)
       this.students.push(msgToShow)
       this.dataSource = [...this.students];
+      console.log(ELEMENT_DATA);
+      // console.log(Object.keys(this.students));
+      
       console.log(this.dataSource)
 
     })

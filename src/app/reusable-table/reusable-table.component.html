@@ -1,7 +1,8 @@
 <div class=" row">
-    <div class="container">
+  <!-- <app-hedertable1></app-hedertable1> -->
+   <div class="container">
         <div class="co-md-12 mt-4">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+            <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
                <ng-container >
                   <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef> name </th>
@@ -26,7 +27,19 @@
                 </ng-container>
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table> -->
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container *ngFor="let stud of displayedColumns  ">
+                 
+                      <ng-container [matColumnDef]="stud">
+                        <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element[stud]}} </td>
+                      </ng-container>
+                    </ng-container>
+                  
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
               </table>
-        </div>
+            </div>
     </div>
 </div>

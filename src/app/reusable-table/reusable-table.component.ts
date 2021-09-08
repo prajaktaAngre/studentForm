@@ -26,14 +26,26 @@ const ELEMENT_DATA: students[] = [
 })
 
 export class ReusableTableComponent implements OnInit {
-  @Input() tableHeaders: any = {};
+  @Input() tableHeaders: any = []
   @Input() data:any;
-  displayedColumns: any[] = ['name', 'email', 'title', 'key_name', 'dtype'];
+  displayedColumns: any[] = [];
+  students: any = [];
   dataSource: any = ELEMENT_DATA;
   constructor() { }
 
   ngOnInit(): void {
     console.log("reusuable table")
+    console.log("students",this.students)
+    console.log("object",Object.keys(this.students)); 
+    this.displayedColumns=Object.keys(this.tableHeaders[0])
+    this.dataSource=this.tableHeaders;
+    // let i=Object.keys(this.tableHeaders[0])
+    // this.dataSource=[i]
+    console.log(this.dataSource);
+    
+
+    
   }
+ 
 
 }
