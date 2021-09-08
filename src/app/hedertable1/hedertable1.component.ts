@@ -12,10 +12,10 @@ export class Hedertable1Component implements OnInit {
   //   name:'prjkta'
   // }
   headers=[{
-    name:'prjkta',
+    FullName:'prjkta ',
     email:'abc@gmail.com'
     },{
-    name:'mansi',
+      FullName:'mansi uttam mali',
     email:'xyz@gmail.com'
     }]
   constructor() { }

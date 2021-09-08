@@ -4,6 +4,7 @@ export interface students {
   email: any;
   title: any;
   key_name: any;
+  flexPercent: any,
   dtype: any;
   
 }
@@ -11,13 +12,23 @@ export interface students {
 const ELEMENT_DATA: students[] = [
  
   {
-       name:'',
-       title: '',
+      
+       title: 'full name',
+       key_name: ' Full Name',
        email: '',
-       key_name: '',
+       flexPercent: '25', 
        dtype: '',
-         
-  }
+       name:'', 
+  },
+  {
+    
+    title: 'email',
+    key_name: 'Email Id',
+    email: '',
+    flexPercent: '25',
+    dtype: '',
+    name:'', 
+}
 ];
 @Component({
   selector: 'app-reusable-table',
@@ -36,12 +47,13 @@ export class ReusableTableComponent implements OnInit {
   ngOnInit(): void {
     console.log("reusuable table")
     console.log("students",this.students)
-    console.log("object",Object.keys(this.students)); 
+    console.log("object",Object.keys(this.students));
+    console.log(this.tableHeaders); 
     this.displayedColumns=Object.keys(this.tableHeaders[0])
     this.dataSource=this.tableHeaders;
     // let i=Object.keys(this.tableHeaders[0])
     // this.dataSource=[i]
-    console.log(this.dataSource);
+    console.log(this.tableHeaders);
     
 
     
