@@ -19,6 +19,10 @@ import {MatCardModule} from '@angular/material/card';
 import { BTableComponent } from './b-table/b-table.component';
 import { ReusableTableComponent } from './reusable-table/reusable-table.component';
 import { Hedertable1Component } from './hedertable1/hedertable1.component';
+import {MatTreeModule} from '@angular/material/tree';
+import {CdkTreeModule} from '@angular/cdk/tree';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +47,11 @@ import { Hedertable1Component } from './hedertable1/hedertable1.component';
     ReactiveFormsModule,
     MatTableModule,
     MatIconModule,
-    MatCardModule
-
+    MatCardModule,
+    MatTreeModule,
+    CdkTreeModule,
+    
+    
 
   ],
   providers: [],

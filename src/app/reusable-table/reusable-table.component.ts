@@ -37,7 +37,7 @@ const ELEMENT_DATA: students[] = [
 })
 
 export class ReusableTableComponent implements OnInit {
-  @Input() tableHeaders: any = []
+  @Input() tableHeaders: any =[]
   @Input() data:any;
   displayedColumns: any[] = [];
   students: any = [];
