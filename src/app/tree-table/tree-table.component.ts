@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+
 interface FoodNode {
+  prize: number;
   name: string;
   children?: FoodNode[];
 }
 
 const TREE_DATA: FoodNode[] = [
   {
-    name: 'Fruit',
+    name: 'Fruit',prize:50,
     children: [
-      {name: 'Apple'},
-      {name: 'Banana'},
-      {name: 'Fruit loops'},
+      {name: 'Apple ',prize:40},
+      {name: 'Banana',prize:30},
+      {name: 'Fruit loops',prize:90},
     ]
   }, {
-    name: 'Vegetables',
+    name: 'Vegetables',prize:90,
     children: [
       {
-        name: 'Green',
+        name: 'Green',prize:40,
         children: [
-          {name: 'Broccoli'},
-          {name: 'Brussels sprouts'},
+          {name: 'Broccoli',prize:40},
+          {name: 'Brussels sprouts',prize:40},
         ]
       }, {
-        name: 'Orange',
+        name: 'Orange',prize:40,
         children: [
-          {name: 'Pumpkins'},
-          {name: 'Carrots'},
+          {name: 'Pumpkins',prize:90},
+          {name: 'Carrots',prize:30},
         ]
       },
     ]
@@ -39,8 +41,8 @@ interface ExampleFlatNode {
   expandable: boolean;
   name: string;
   level: number;
+  prize:number;
 }
-
 
 
 @Component({
@@ -49,13 +51,16 @@ interface ExampleFlatNode {
   styleUrls: ['./tree-table.component.scss']
 })
 export class TreeTableComponent implements OnInit {
+  displayedColumns: any[] = [];
+  students: any = [];
  
-
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
+      prize:node.prize,
+     
     };
   }
 
@@ -63,7 +68,8 @@ export class TreeTableComponent implements OnInit {
       node => node.level, node => node.expandable);
 
   treeFlattener = new MatTreeFlattener(
-      this._transformer, node => node.level, node => node.expandable, node => node.children);
+      this._transformer, node => node.level, node => node.expandable, node => node.children,
+   );
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
@@ -79,4 +85,6 @@ ngOnInit() {
   console.log(this.treeControl)
  
 }
+
+
 }
