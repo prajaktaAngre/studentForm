@@ -21,6 +21,7 @@ import { ReusableTableComponent } from './reusable-table/reusable-table.componen
 import { Hedertable1Component } from './hedertable1/hedertable1.component';
 import { TreeTableComponent } from './tree-table/tree-table.component';
 import {MatTreeModule} from '@angular/material/tree';
+import { TreeDataComponent } from './tree-data/tree-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import {MatTreeModule} from '@angular/material/tree';
     BTableComponent,
     ReusableTableComponent,
     Hedertable1Component,
-    TreeTableComponent
+    TreeTableComponent,
+    TreeDataComponent
   ],
   imports: [
     BrowserModule,

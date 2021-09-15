@@ -1,31 +1,72 @@
-<div class="container">
-  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
-    <ng-container *ngFor="let stud of displayedColumns  ">
-     
-          <ng-container [matColumnDef]="stud">
-            <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
-            <td mat-cell *matCellDef="let element"> {{element[stud]}} </td>
-          </ng-container>
-        </ng-container>
-      
+<div class="container mt-3">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+            {{node.name}}   
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name ">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            {{node.name}}
+          </mat-tree-node>
+        </mat-tree>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="prize">
+      <th mat-header-cell *matHeaderCellDef> prize </th>
+      <td mat-cell *matCellDef="let element"> 
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+            <tr>
+              <td>{{node.prize}}</td>
+            </tr>
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+             {{node.prize}}
+          </mat-tree-node>
+        </mat-tree> </td>
+        
+    </ng-container>
+    abcd
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table> -->
-  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <table class="table"><tr>
-        <th>Fruits Names</th>
-       
-        <th>Fruits Prize</th>
-      </tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <!-- ANOTHERCODE -->
+  <!-- <table class="table">
+    <thead>
       <tr>
+        <th>Fruit  Names </th>
+      
        
-        <td><button mat-icon-button disabled></button>
-          {{node.name}} </td>
-        <td>{{node.prize}}</td>
       </tr>
-    </table>
+   
+    </thead>
+
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    
+    
+ 
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      
+        <tbody>
+
+          <tr>
+          <td>
+            <button mat-icon-button disabled></button> 
+            {{node.name}} 
+          </td>
+          <td>{{node.prize}}</td>
+        </tr>
+      </tbody>
+      
     </mat-tree-node>
+  
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
       <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name +node.prize">
         <mat-icon class="mat-icon-rtl-mirror">
@@ -34,6 +75,7 @@
       </button>
       {{node.name}}
     </mat-tree-node>
+
   </mat-tree>
+</table> -->
 </div>
-<!-- tree-table -->

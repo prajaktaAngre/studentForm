@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 
@@ -9,31 +9,31 @@ interface FoodNode {
 }
 
 const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',prize:50,
-    children: [
-      {name: 'Apple ',prize:40},
-      {name: 'Banana',prize:30},
-      {name: 'Fruit loops',prize:90},
-    ]
-  }, {
-    name: 'Vegetables',prize:90,
-    children: [
-      {
-        name: 'Green',prize:40,
-        children: [
-          {name: 'Broccoli',prize:40},
-          {name: 'Brussels sprouts',prize:40},
-        ]
-      }, {
-        name: 'Orange',prize:40,
-        children: [
-          {name: 'Pumpkins',prize:90},
-          {name: 'Carrots',prize:30},
-        ]
-      },
-    ]
-  },
+  // {
+  //   name: 'Fruit',prize:290,
+  //   children: [
+  //     {name: 'Apple ',prize:40},
+  //     {name: 'Banana',prize:30},
+  //     {name: 'Fruit loops',prize:90},
+  //   ]
+  // }, {
+  //   name: 'Vegetables',prize:390,
+  //   children: [
+  //     {
+  //       name: 'Green',prize:40,
+  //       children: [
+  //         {name: 'Broccoli',prize:40},
+  //         {name: 'Brussels sprouts',prize:40},
+  //       ]
+  //     }, {
+  //       name: 'Orange',prize:140,
+  //       children: [
+  //         {name: 'Pumpkins',prize:90},
+  //         {name: 'Carrots',prize:30},
+  //       ]
+  //     },
+  //   ]
+  // },
 ];
 
 /** Flat node with expandable and level information */
@@ -51,9 +51,8 @@ interface ExampleFlatNode {
   styleUrls: ['./tree-table.component.scss']
 })
 export class TreeTableComponent implements OnInit {
-  displayedColumns: any[] = [];
-  students: any = [];
- 
+  displayedColumns: string[] = ['name','prize', ];
+  @Input () data:any=[]
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -75,7 +74,7 @@ export class TreeTableComponent implements OnInit {
 
   constructor() 
 {
-    this.dataSource.data = TREE_DATA;
+    this.dataSource.data = this.data;
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
@@ -83,6 +82,8 @@ export class TreeTableComponent implements OnInit {
 
 ngOnInit() {
   console.log(this.treeControl)
+  console.log(this.data);
+  this.dataSource.data = this.data;
  
 }
 

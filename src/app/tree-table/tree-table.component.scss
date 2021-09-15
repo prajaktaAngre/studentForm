@@ -1,4 +1,7 @@
-.display-contents {
-    display: contents;
-  }
-  
+table {
+  width: 100%;
+}
+.table th, .table td {
+      vertical-align: unset;
+    
+}

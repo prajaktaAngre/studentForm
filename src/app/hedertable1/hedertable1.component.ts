@@ -5,10 +5,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hedertable1.component.scss']
 })
 export class Hedertable1Component implements OnInit {
-  // headers={
-  //   email:'prajkta@gmail.com',
-  //   name:'prjkta'
-  // }
   headers=[{
     Title:'Full Name',
     
