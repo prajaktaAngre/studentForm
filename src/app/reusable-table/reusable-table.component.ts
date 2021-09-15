@@ -47,6 +47,7 @@ export class ReusableTableComponent implements OnInit {
   ngOnInit(): void {
     console.log("reusuable table")
     console.log("students",this.students)
+    console.log(this.tableHeaders); 
     console.log("object",Object.keys(this.students));
     console.log(this.tableHeaders); 
     this.displayedColumns=Object.keys(this.tableHeaders[0])

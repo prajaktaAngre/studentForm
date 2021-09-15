@@ -33,6 +33,10 @@ export class TreeDataComponent implements OnInit {
       ]
     },
   ];
+  tableHeaders=[{
+    Fruits_Names :'Fruits Names',
+     Fruits_prize:'Fruits prize'
+  }]
   
   constructor() { }
 

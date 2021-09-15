@@ -51,8 +51,9 @@ interface ExampleFlatNode {
   styleUrls: ['./tree-table.component.scss']
 })
 export class TreeTableComponent implements OnInit {
-  displayedColumns: string[] = ['name','prize', ];
+  displayedColumns=[] = ['name','prize', ]
   @Input () data:any=[]
+  @Input () display:any=[];
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -82,9 +83,11 @@ export class TreeTableComponent implements OnInit {
 
 ngOnInit() {
   console.log(this.treeControl)
-  console.log(this.data);
+  console.log(this.display);
   this.dataSource.data = this.data;
- 
+  // this.displayedColumns=Object.keys(this.display)
+  // this.displayedColumns=this.display;
+  
 }
 
 
