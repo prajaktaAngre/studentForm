@@ -6,7 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tree-data.component.scss']
 })
 export class TreeDataComponent implements OnInit {
-  treeHeaderdata=[
+  tableHeaders=[{
+    headerNames :'Fruits names',
+    headerKey:'name'
+  },{
+   
+    headerPrize:'Fruits prize',
+    headerKey:'prize'
+  }]
+  
+  tableData=[
     {
       name: 'Fruit',prize:290,
       children: [
@@ -33,16 +42,12 @@ export class TreeDataComponent implements OnInit {
       ]
     },
   ];
-  tableHeaders=[{
-    Fruits_Names :'Fruits Names',
-     Fruits_prize:'Fruits prize'
-  }]
   
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.treeHeaderdata)
-    this.treeHeaderdata;
+    console.log(this.tableData)
+    this.tableData;
   }
 
 }
