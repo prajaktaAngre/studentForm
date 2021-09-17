@@ -1,12 +1,13 @@
 <div class="container mt-3 structure-table">
   <table class="table">
    <tr>
-      <th *ngFor="let i of treeHeaders">{{i.headerKey}}</th> 
+      <th *ngFor="let i of treeHeaders">{{i.headerNames}}</th> 
     </tr>
   </table>
   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <div fxLayout="row" fxLayoutAlign="space-between" class="flex">{{node.name}}</div>
+      <div fxLayout="row" fxLayoutAlign="space-between" class="flex">
+        {{node.name}}</div>
       <div fxLayout="row" fxLayoutAlign="space-between">{{node.prize}}</div>
     </mat-tree-node>
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>

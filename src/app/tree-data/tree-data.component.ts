@@ -11,7 +11,7 @@ export class TreeDataComponent implements OnInit {
     headerKey:' Name'
   },{
    
-    headerPrize:'Fruit prize',
+    headerNames:'Fruit prize',
     headerKey:' Prize'
   }]
   

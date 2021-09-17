@@ -9,31 +9,7 @@ interface FoodNode {
 }
 
 const TREE_DATA: FoodNode[] = [
-  // {
-  //   name: 'Fruit',prize:290,
-  //   children: [
-  //     {name: 'Apple ',prize:40},
-  //     {name: 'Banana',prize:30},
-  //     {name: 'Fruit loops',prize:90},
-  //   ]
-  // }, {
-  //   name: 'Vegetables',prize:390,
-  //   children: [
-  //     {
-  //       name: 'Green',prize:40,
-  //       children: [
-  //         {name: 'Broccoli',prize:40},
-  //         {name: 'Brussels sprouts',prize:40},
-  //       ]
-  //     }, {
-  //       name: 'Orange',prize:140,
-  //       children: [
-  //         {name: 'Pumpkins',prize:90},
-  //         {name: 'Carrots',prize:30},
-  //       ]
-  //     },
-  //   ]
-  // },
+ 
 ];
 
 /** Flat node with expandable and level information */
@@ -52,8 +28,6 @@ interface ExampleFlatNode {
 })
 export class TreeTableComponent implements OnInit {
   displayedColumns=[] = ['name','prize', ]
-  index=[0,1]
-  
   @Input () treeData:any=[]
   @Input ()  treeHeaders:any;
   
@@ -88,7 +62,7 @@ ngOnInit() {
   console.log(this.treeControl)
   console.log(this.treeHeaders);
   this.dataSource.data = this.treeData;
-  console.log(this.treeHeaders);
+  // console.log(this.treeData);
   
 
   
