@@ -6,9 +6,9 @@
   </table>
   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <div fxLayout="row" fxLayoutAlign="space-between" class="flex">
-        {{node.name}}</div>
-      <div fxLayout="row" fxLayoutAlign="space-between">{{node.prize}}</div>
+      <div *ngFor="let i of treeHeaders">
+           {{node[i.headerKey]}}
+        </div>
     </mat-tree-node>
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
       <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name ">
@@ -18,6 +18,9 @@
       </button>
       <div fxLayout="row" fxLayoutAlign="space-between" class="flex">{{node.name}}</div>
       <div fxLayout="row" fxLayoutAlign="space-between">{{node.prize}}</div>
+      <div *ngFor="let i of treeHeaders">
+        {{node[i.headerKey]}}
+     </div>
     </mat-tree-node>
   </mat-tree>
 </div>
