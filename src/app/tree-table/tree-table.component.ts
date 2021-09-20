@@ -28,6 +28,7 @@ interface ExampleFlatNode {
 })
 export class TreeTableComponent implements OnInit {
   displayedColumns=[] = ['name','prize', ]
+  
   @Input () treeData:any=[]
   @Input ()  treeHeaders:any;
   
@@ -62,13 +63,16 @@ ngOnInit() {
   console.log(this.treeControl)
   console.log(this.treeHeaders);
   this.dataSource.data = this.treeData;
-  // console.log(this.treeData);
+  var keys = Object.keys(this.treeData[0]);
+  console.log(keys)
   
 
   
 
   
 }
+
+
 
 
 }

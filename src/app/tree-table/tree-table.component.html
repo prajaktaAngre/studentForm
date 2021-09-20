@@ -1,26 +1,28 @@
 <div class="container mt-3 structure-table">
   <table class="table">
-   <tr>
-      <th *ngFor="let i of treeHeaders">{{i.headerNames}}</th> 
+    <tr>
+      <th *ngFor="let i of treeHeaders">{{i.headerNames}}</th>
     </tr>
   </table>
   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <div *ngFor="let i of treeHeaders">
-           {{node[i.headerKey]}}
+      <div class="flex-container" fxLayout="row" fxFlex="56%" fxLayoutAlign="space-between">
+        <div *ngFor="let i of treeHeaders" class="child-1">
+          {{node[i.headerKey]}}
         </div>
+      </div>
     </mat-tree-node>
-    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding id="sample_id">
       <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name ">
         <mat-icon class="mat-icon-rtl-mirror">
           {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </button>
-      <div fxLayout="row" fxLayoutAlign="space-between" class="flex">{{node.name}}</div>
-      <div fxLayout="row" fxLayoutAlign="space-between">{{node.prize}}</div>
-      <div *ngFor="let i of treeHeaders">
-        {{node[i.headerKey]}}
-     </div>
+      <div class="flex-container" fxLayout="row" fxFlex="54%" fxLayoutAlign="space-between">
+        <div *ngFor="let i of treeHeaders" class="child-2">
+          {{node[i.headerKey]}}
+        </div>
+      </div>
     </mat-tree-node>
   </mat-tree>
 </div>

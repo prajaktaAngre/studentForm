@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TreeDataComponent implements OnInit {
   tableHeaders=[{
-    headerNames :' Fruit names',
-    headerKey:' name'
+    headerNames :'Fruit names',
+    headerKey:'name'
   },{
    
     headerNames:'Fruit prize',
-    headerKey:' prize'
+    headerKey:'prize'
   }]
   
   tableData=[
