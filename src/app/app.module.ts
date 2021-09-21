@@ -22,6 +22,12 @@ import { Hedertable1Component } from './hedertable1/hedertable1.component';
 import { TreeTableComponent } from './tree-table/tree-table.component';
 import {MatTreeModule} from '@angular/material/tree';
 import { TreeDataComponent } from './tree-data/tree-data.component';
+import { MatComponentsComponent } from './mat-components/mat-components.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +37,8 @@ import { TreeDataComponent } from './tree-data/tree-data.component';
     ReusableTableComponent,
     Hedertable1Component,
     TreeTableComponent,
-    TreeDataComponent
+    TreeDataComponent,
+    MatComponentsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,12 @@ import { TreeDataComponent } from './tree-data/tree-data.component';
     MatTableModule,
     MatIconModule,
     MatCardModule,
-    MatTreeModule
+    MatTreeModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatListModule
 
 
   ],

@@ -8,7 +8,7 @@
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
       <div class="flex-container" fxLayout="row"  fxLayoutAlign="space-between">
         <div *ngFor="let i of treeHeaders;let indexOfelement=index;" 
-        >
+        [fxFlex]="indexOfelement!=0 ? '50%': '' ">
           {{node[i.headerKey]}} 
         </div>
       </div>
@@ -21,10 +21,11 @@
       </button>
       <div class="flex-container" fxLayout="row"  fxLayoutAlign="space-between">
         <div *ngFor="let i of treeHeaders; let indexOfelement=index;" 
-       >
+        [fxFlex]="indexOfelement!=0 ? '50%': '' ">
           {{node[i.headerKey]}}
         </div>
       </div>
     </mat-tree-node>
   </mat-tree>
 </div>
+

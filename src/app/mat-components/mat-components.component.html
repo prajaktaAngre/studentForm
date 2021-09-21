@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="container">
+        <div class="m-2">
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip>One fish</mat-chip>
+                <mat-chip>Two fish</mat-chip>
+                <mat-chip color="primary" selected>Primary fish</mat-chip>
+                <mat-chip color="accent" selected>Accent fish</mat-chip>
+            </mat-chip-list>
+        </div>
+        <!-- second -->
+        <div class="col-md-3 m-2">
+            <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+                <mat-chip *ngFor="let chip of availableColors" selected [color]="chip.color">
+                    {{chip.name}}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+
+        <!-- 3rd-->
+        <div class="m-2">
+            <mat-form-field class="example-chip-list" appearance="fill" class="w-100">
+                <mat-label>Favorite Fruits</mat-label>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(fruit)">
+                        {{fruit.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New fruit..." [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+        </div>
+        <!-- 4th -->
+        <div class="example-button-container m-2">
+            <button mat-raised-button (click)="formControl.disable()">Disable form control</button>
+            <button mat-raised-button (click)="formControl.enable()">Enable form control</button>
+
+            <mat-form-field class="example-chip-list w-100" appearance="fill">
+                <mat-label>Video keywords</mat-label>
+                <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="formControl">
+                    <mat-chip *ngFor="let keyword of keywords" [selected]="keyword" [value]="keyword"
+                        (removed)="removeKeyword(keyword)">
+                        {{keyword}}
+                    </mat-chip>
+                    <input placeholder="New keyword..." [matChipInputFor]="chipList"
+                        (matChipInputTokenEnd)="addKeywordFromInput($event)">
+                </mat-chip-list>
+            </mat-form-field>
+        </div>
+        <!-- 5th -->
+        <!-- <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"
+            (cdkDropListDropped)="drop($event)">
+            <mat-chip class="example-box" cdkDrag *ngFor="let vegetable of vegetables">
+                {{vegetable.name}}
+            </mat-chip>
+        </mat-chip-list> -->
+        <!-- 6th -->
+        <!-- <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Favorite Fruits</mat-label>
+            <mat-chip-list #chipList aria-label="Fruit selection">
+                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(fruit)">
+                    {{fruit}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New fruit..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                    {{fruit}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field> -->
+   <!-- 7th -->
+   <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+  </mat-form-field>
+  <button mat-button (click)="openDialog()">Launch dialog</button>
+  <mat-selection-list #shoes [multiple]="false">
+    <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+      {{shoe}}
+    </mat-list-option>
+  </mat-selection-list>
+  
+  <p>
+    Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+  </p>
+    </div>
+    
+</div>
