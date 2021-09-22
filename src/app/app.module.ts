@@ -28,6 +28,21 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSortModule} from '@angular/material/sort';
+import { Layout1Component } from './layout1/layout1.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +53,8 @@ import {MatListModule} from '@angular/material/list';
     Hedertable1Component,
     TreeTableComponent,
     TreeDataComponent,
-    MatComponentsComponent
+    MatComponentsComponent,
+    Layout1Component
   ],
   imports: [
     BrowserModule,
@@ -61,9 +77,21 @@ import {MatListModule} from '@angular/material/list';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    MatListModule
-
-
+    MatListModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    MatSnackBarModule,
+    MatSliderModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatTooltipModule,
+    MatAutocompleteModule,
+    MatExpansionModule,
+    MatSidenavModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

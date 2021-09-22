@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BTableComponent } from './b-table/b-table.component';
 import { ReFormComponent } from './display-list/re-form.component';
 import { Hedertable1Component } from './hedertable1/hedertable1.component';
+import { Layout1Component } from './layout1/layout1.component';
 import { MatComponentsComponent } from './mat-components/mat-components.component';
 import { ReusableTableComponent } from './reusable-table/reusable-table.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path : 'reusable', component :Hedertable1Component},
   {path : 'tree', component :TreeDataComponent},
   {path : 'mat-component', component :MatComponentsComponent},
+  {path : 'layout1', component :Layout1Component},
 ];
 
 @NgModule({
