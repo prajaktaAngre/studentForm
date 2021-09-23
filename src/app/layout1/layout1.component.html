@@ -1,26 +1,33 @@
 
+<!-- using flex -->
 <div class="container">
-    <div class="row">
-       <div class="col-md-4" *ngFor="let i of foods" >
-        <mat-card class="example-card"   >
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            {{i.value}}
-            {{i.viewValue}}
-          </mat-card>        
-        </div>
-    </div>
-</div>
-<div class="flex-container" fxLayout="row" fxLayoutGap="32px">
-       <div  *ngFor="let i of foods" fxFlex >
+<div class="flex-container" fxLayout="row wrap" fxLayoutGap="37px">
+       <div  *ngFor="let i of foods" fxFlex="30">
         <mat-card class="example-card"  >
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+             alt="Photo of a Shiba Inu">
             {{i.value}}
             {{i.viewValue}}
-          </mat-card>        
+          </mat-card>       
         </div>
     </div>
-    <div class="numbers" fxLayout="row" fxLayoutGap="32px">
-       <mat-card>1</mat-card>
-       <mat-card>2</mat-card>
-       <mat-card>3</mat-card>
-     </div>
+  </div>
+
+
+ 
+<!-- <div class="example-button-container m-2">
+  <button mat-raised-button (click)="formControl.disable()">Disable form control</button>
+  <button mat-raised-button (click)="formControl.enable()">Enable form control</button>
+
+  <mat-form-field class="example-chip-list w-100" appearance="fill">
+      <mat-label>Video keywords</mat-label>
+      <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="formControl">
+          <mat-chip *ngFor="let keyword of keywords" [selected]="keyword" [value]="keyword"
+              (removed)="removeKeyword(keyword)">
+              {{keyword}}
+          </mat-chip>
+          <input placeholder="New keyword..." [matChipInputFor]="chipList"
+              (matChipInputTokenEnd)="addKeywordFromInput($event)">
+      </mat-chip-list>
+  </mat-form-field>
+</div> -->

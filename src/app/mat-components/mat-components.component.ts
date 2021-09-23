@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import {MatChipInputEvent} from '@angular/material/chips';
 import {FormControl} from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {MatDialog} from '@angular/material/dialog';
@@ -48,6 +48,7 @@ export class MatComponentsComponent implements OnInit {
     {name: 'Accent', color: 'accent'},
     {name: 'Warn', color: 'warn'}
   ];
+  
   selectable = true;
   removable = true;
   addOnBlur = true;
@@ -58,7 +59,7 @@ export class MatComponentsComponent implements OnInit {
     {name: 'Apple'},
   ];
   keywords = new Set(['angular', 'how-to', 'tutorial']);
-  formControl = new FormControl(['tutorial']);
+  formControl = new FormControl(['angular']);
   vegetables: Vegetable[] = [
     {name: 'apple'},
     {name: 'banana'},
@@ -91,7 +92,12 @@ export class MatComponentsComponent implements OnInit {
   ];
 
   sortedData: Dessert[];
-
+  date = new FormControl(new Date());
+  preselectedShoe='Sneakers';
+  preselectedToggle='Bold';
+  preselectedSlider=6000;
+  
+  // optionsSelectedArray: true = true;
   //functions
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -139,7 +145,7 @@ export class MatComponentsComponent implements OnInit {
     color: 'primary',
     subtasks: [
       {name: 'Primary', completed: false, color: 'primary'},
-      {name: 'Accent', completed: false, color: 'accent'},
+      {name: 'Accent', completed: true, color: 'accent'},
       {name: 'Warn', completed: false, color: 'warn'}
     ]
   };
@@ -167,11 +173,13 @@ export class MatComponentsComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
-  formatLabel(value: number) {
+  formatLabel(value: number=90) {
     if (value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }
-
+   
+    console.log(value);
+    
     return value;
   }
 
@@ -208,6 +216,7 @@ export class MatComponentsComponent implements OnInit {
       map(value => typeof value === 'string' ? value : value.name),
       map(name => name ? this._filter(name) : this.options.slice())
     );
+    // console.log(value)
     }
 
   displayFn(user: User): string {

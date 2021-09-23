@@ -18,38 +18,29 @@
         </div>
 
         <!-- 3rd-->
-        <div class="m-2">
-            <mat-form-field class="example-chip-list" appearance="fill" class="w-100">
+        <div class="m-2 ">
+            <mat-form-field class="example-chip-list w-100" appearance="fill">
                 <mat-label>Favorite Fruits</mat-label>
                 <mat-chip-list #chipList aria-label="Fruit selection">
-                    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
-                        (removed)="remove(fruit)">
-                        {{fruit.name}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input placeholder="New fruit..." [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                        (matChipInputTokenEnd)="add($event)">
+                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                           [removable]="removable" (removed)="remove(fruit)">
+                    {{fruit.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="New fruit..."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)">
                 </mat-chip-list>
-            </mat-form-field>
+              </mat-form-field>
         </div>
         <!-- 4th -->
-        <div class="example-button-container m-2">
-            <button mat-raised-button (click)="formControl.disable()">Disable form control</button>
-            <button mat-raised-button (click)="formControl.enable()">Enable form control</button>
-
-            <mat-form-field class="example-chip-list w-100" appearance="fill">
-                <mat-label>Video keywords</mat-label>
-                <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="formControl">
-                    <mat-chip *ngFor="let keyword of keywords" [selected]="keyword" [value]="keyword"
-                        (removed)="removeKeyword(keyword)">
-                        {{keyword}}
-                    </mat-chip>
-                    <input placeholder="New keyword..." [matChipInputFor]="chipList"
-                        (matChipInputTokenEnd)="addKeywordFromInput($event)">
-                </mat-chip-list>
-            </mat-form-field>
-        </div>
+        <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="picker3" [value]="date.value">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field><br>
         <!-- 5th -->
         <!-- <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"
             (cdkDropListDropped)="drop($event)">
@@ -79,20 +70,23 @@
         <!-- 7th -->
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" >
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
         <button mat-button (click)="openDialog()">Launch dialog</button>
-        <mat-selection-list #shoes [multiple]="false">
-            <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+        <mat-selection-list #shoes [multiple]="false" [(ngModel)]="preselectedShoe">
+            <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe" 
+            selected="preselectedShoe" >
                 {{shoe}}
             </mat-list-option>
         </mat-selection-list>
 
         <p>
-            Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+            Option selected:{{preselectedShoe}}
+          
         </p>
+        
         <!-- 8th -->
         <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
         </mat-paginator>
@@ -101,12 +95,13 @@
         <!-- 10th -->
         <section>
             <h4>Button Toggle inside of a Reactive form</h4>
-            <mat-button-toggle-group [formControl]="fontStyleControl" aria-label="Font Style">
-                <mat-button-toggle value="bold">Bold</mat-button-toggle>
+            <mat-button-toggle-group [formControl]="fontStyleControl" aria-label="Font Style"
+            [(ngModel)]="preselectedToggle">
+                <mat-button-toggle value="bold"  selected="preselectedToggle">Bold</mat-button-toggle>
                 <mat-button-toggle value="italic">Italic</mat-button-toggle>
                 <mat-button-toggle value="underline">Underline</mat-button-toggle>
             </mat-button-toggle-group>
-            <p>Chosen value is {{fontStyleControl.value}}</p>
+            <p>Chosen value is {{preselectedToggle}}</p>
         </section>
         <!-- 11th -->
         <section class="example-section">
@@ -125,13 +120,15 @@
                 <ul>
                     <li *ngFor="let subtask of task.subtasks">
                         <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
-                            (ngModelChange)="updateAllComplete()">
+                            (ngModelChange)="updateAllComplete()" >
                             {{subtask.name}}
                         </mat-checkbox>
                     </li>
                 </ul>
             </span>
         </section>
+        <!-- preselected -->
+      
         <!-- 12th -->
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
@@ -163,8 +160,12 @@
 
         <button mat-stroked-button (click)="openSnackBar(message.value, action.value)">Show snack-bar</button>
         <!-- `18th -->
-        <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" step="1000" min="0" max="100000"
-            aria-label="units"></mat-slider>
+        <div>
+        <mat-slider thumbLabel [displayWith]="formatLabel" 
+        tickInterval="1000" step="1000" min="0" max="100000" 
+            aria-label="units" [(ngModel)]="preselectedSlider" >
+        </mat-slider><p>{{preselectedSlider}}</p>
+    </div>
         <!-- 19th -->
         <mat-spinner></mat-spinner>
         <!-- 20 -->
@@ -257,5 +258,8 @@
                 <td>{{dessert.protein}}</td>
             </tr>
         </table>
+        <!-- 24 -->
+        <div class="m-2">
+     
 
     </div>
