@@ -43,6 +43,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSortModule} from '@angular/material/sort';
 import { Layout1Component } from './layout1/layout1.component';
+import { PaginationTableComponent } from './pagination-table/pagination-table.component';
+import { PaginationDataComponent } from './pagination-data/pagination-data.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,9 @@ import { Layout1Component } from './layout1/layout1.component';
     TreeTableComponent,
     TreeDataComponent,
     MatComponentsComponent,
-    Layout1Component
+    Layout1Component,
+    PaginationTableComponent,
+    PaginationDataComponent
   ],
   imports: [
     BrowserModule,

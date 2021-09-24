@@ -1,34 +1,38 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
 export interface students {
+
   name: string;
   email: any;
   title: any;
   key_name: any;
   flexPercent: any,
   dtype: any;
-  
+
 }
 
 const ELEMENT_DATA: students[] = [
- 
+
   {
-      
-       title: 'full name',
-       key_name: ' Full Name',
-       email: '',
-       flexPercent: '25', 
-       dtype: '',
-       name:'', 
+
+    title: 'full name',
+    key_name: ' Full Name',
+    email: '',
+    flexPercent: '25',
+    dtype: '',
+    name: '',
   },
   {
-    
+
     title: 'email',
     key_name: 'Email Id',
     email: '',
     flexPercent: '25',
     dtype: '',
-    name:'', 
-}
+    name: '',
+  }
 ];
 @Component({
   selector: 'app-reusable-table',
@@ -37,28 +41,32 @@ const ELEMENT_DATA: students[] = [
 })
 
 export class ReusableTableComponent implements OnInit {
-  @Input() tableHeaders: any =[]
-  @Input() data:any;
+  @Input() tableHeaders: any;
+  @Input() tableData: any;
   displayedColumns: any[] = [];
   students: any = [];
-  dataSource: any = ELEMENT_DATA;
+  dataSource: any = new MatTableDataSource(ELEMENT_DATA);
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
   constructor() { }
-
-  ngOnInit(): void {
-    console.log("reusuable table")
-    console.log("students",this.students)
-    console.log(this.tableHeaders); 
-    console.log("object",Object.keys(this.students));
-    console.log(this.tableHeaders); 
-    this.displayedColumns=Object.keys(this.tableHeaders[0])
-    this.dataSource=this.tableHeaders;
-    // let i=Object.keys(this.tableHeaders[0])
-    // this.dataSource=[i]
-    console.log(this.tableHeaders);
-    
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    // console.log( this.dataSource.paginator);
     
   }
- 
+  ngOnInit(): void {
+    console.log("reusuable table")
+    console.log("students", this.students)
+    console.log(this.tableHeaders);
+    console.log("object", Object.keys(this.students));
+    console.log(this.tableHeaders);
+    this.displayedColumns = Object.keys(this.tableHeaders[0])
+    this.dataSource = this.tableHeaders;
+    console.log("tableheadrs",this.tableHeaders);
+    console.log("datasource",this.dataSource);
+
+
+  }
+
 
 }

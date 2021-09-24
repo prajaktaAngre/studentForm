@@ -96,8 +96,15 @@ export class MatComponentsComponent implements OnInit {
   preselectedShoe='Sneakers';
   preselectedToggle='Bold';
   preselectedSlider=6000;
-  
-  // optionsSelectedArray: true = true;
+  toppings = new FormControl();
+   
+     toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+     selectedtopp = 'Extra cheese';
+     selected= ['option2'];
+     columns = [{value:'option1',label:'Option1'},
+                      {value:'option2',label:'Option2'},
+                      {value:'option3',label:'Option3'}];
+   
   //functions
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
