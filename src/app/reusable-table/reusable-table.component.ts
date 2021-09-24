@@ -41,19 +41,33 @@ const ELEMENT_DATA: students[] = [
 })
 
 export class ReusableTableComponent implements OnInit {
-  @Input() tableHeaders: any;
+  @Input() tableHeaders: any=[]
   @Input() tableData: any;
   displayedColumns: any[] = [];
   students: any = [];
-  dataSource: any = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  constructor() { }
+   paginator!: MatPaginator;
+   
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    // console.log( this.dataSource.paginator);
+    console.log(this.paginator);
     
   }
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+}
+
+setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+    console.log(this.paginator)
+
+    
+}
+ 
+  
   ngOnInit(): void {
     console.log("reusuable table")
     console.log("students", this.students)
@@ -64,7 +78,13 @@ export class ReusableTableComponent implements OnInit {
     this.dataSource = this.tableHeaders;
     console.log("tableheadrs",this.tableHeaders);
     console.log("datasource",this.dataSource);
-
+    this.dataSource.paginator = this.paginator;
+    console.log(this.paginator);
+    this.dataSource = new MatTableDataSource(this.tableHeaders);
+    this.dataSource.paginator = this.paginator;
+    console.log(this.paginator);
+    console.log(this.dataSource);
+    
 
   }
 

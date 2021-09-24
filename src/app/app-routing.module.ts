@@ -7,6 +7,7 @@ import { Layout1Component } from './layout1/layout1.component';
 import { MatComponentsComponent } from './mat-components/mat-components.component';
 import { PaginationTableComponent } from './pagination-table/pagination-table.component';
 import { ReusableTableComponent } from './reusable-table/reusable-table.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { TreeDataComponent } from './tree-data/tree-data.component';
 import { TreeTableComponent } from './tree-table/tree-table.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path : 'tree', component :TreeDataComponent},
   {path : 'mat-component', component :MatComponentsComponent},
   {path : 'layout1', component :Layout1Component},
-  {path : 'Pagination', component :PaginationTableComponent}
+  {path : 'Pagination', component :PaginationTableComponent},
+  {path : 'sidenav', component :SidenavComponent},
 ];
 
 @NgModule({

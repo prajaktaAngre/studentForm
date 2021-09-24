@@ -45,6 +45,8 @@ import {MatSortModule} from '@angular/material/sort';
 import { Layout1Component } from './layout1/layout1.component';
 import { PaginationTableComponent } from './pagination-table/pagination-table.component';
 import { PaginationDataComponent } from './pagination-data/pagination-data.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavFormComponent } from './sidenav/sidenav-form/sidenav-form.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { PaginationDataComponent } from './pagination-data/pagination-data.compo
     MatComponentsComponent,
     Layout1Component,
     PaginationTableComponent,
-    PaginationDataComponent
+    PaginationDataComponent,
+    SidenavComponent,
+    SidenavFormComponent
   ],
   imports: [
     BrowserModule,

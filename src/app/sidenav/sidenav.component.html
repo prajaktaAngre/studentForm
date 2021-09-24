@@ -1,0 +1,58 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value">
+    <mat-drawer #drawer [mode]="hasBackdrop.value">
+        <app-sidenav-form></app-sidenav-form>
+    </mat-drawer>
+    <mat-drawer-content>
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Sidenav mode</mat-label>
+        <mat-select #mode value="side">
+         
+        </mat-select>
+      </mat-form-field> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Has backdrop</mat-label>
+        <mat-select #hasBackdrop>
+          <mat-option>Unset</mat-option>
+          <mat-option [value]="true">True</mat-option>
+          <mat-option [value]="false">False</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button (click)="drawer.toggle()">Sidenav</button>
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container *ngFor="let stud of displayedColumns  ">
+          <!-- <ng-container *ngIf="stud!=='edit';else edittem ">
+            <ng-container *ngIf="stud!=='delete';else deleteitem "> -->
+              <ng-container [matColumnDef]="stud">
+                <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[stud]}} </td>
+              </ng-container>
+            <!-- </ng-container>
+          </ng-container> -->
+          <!-- <ng-template #edittem>
+            <ng-container [matColumnDef]="stud">
+              <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
+              <td mat-cell *matCellDef="let itemb ; let i=index">
+                <button type="button" mat-raised-button color="primary" 
+                (click)="updateInfo(itemb)">edit</button>
+              </td>
+            </ng-container>
+          </ng-template>
+          <ng-template #deleteitem>
+            <ng-container [matColumnDef]="stud">
+              <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
+              <td mat-cell *matCellDef="let itemd ; let i=index">
+                <button mat-fab color="warn" aria-label="Example icon button with a delete icon">
+                  <mat-icon (click)="deleteInfo(i)">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+          </ng-template> -->
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  
