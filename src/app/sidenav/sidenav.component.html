@@ -1,14 +1,9 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value">
+<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value"
+>
     <mat-drawer #drawer [mode]="hasBackdrop.value">
-        <app-sidenav-form></app-sidenav-form>
+        <app-sidenav-form (newItemEvent)="addItem($event)"></app-sidenav-form>
     </mat-drawer>
     <mat-drawer-content>
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Sidenav mode</mat-label>
-        <mat-select #mode value="side">
-         
-        </mat-select>
-      </mat-form-field> -->
       <mat-form-field appearance="fill">
         <mat-label>Has backdrop</mat-label>
         <mat-select #hasBackdrop>
@@ -20,7 +15,7 @@
       <button mat-raised-button (click)="drawer.toggle()">Sidenav</button>
 
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
         <ng-container *ngFor="let stud of displayedColumns  ">
           <!-- <ng-container *ngIf="stud!=='edit';else edittem ">
             <ng-container *ngIf="stud!=='delete';else deleteitem "> -->
