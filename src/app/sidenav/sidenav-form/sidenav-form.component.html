@@ -1,47 +1,52 @@
 <p>Student Details</p>
-<p *ngIf="showFiller">
+<p>
     <mat-card>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit(position)">
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width w-100" appearance="fill">
-                        <mat-label>Your name</mat-label>
-                        <input matInput formControlName="name" required>
-                    </mat-form-field>
-                </td>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit(recordId)">
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width w-100" appearance="fill">
+                            <mat-label>Your name</mat-label>
+                            <input matInput formControlName="name" required>
+                        </mat-form-field>
+                    </td>
                 </tr>
-                <tr>            
-                <td>
-                    <label id="example-radio-group-label">Pick your stream</label><br>
-                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                    formControlName="stream"   [(ngModel)]="favoriteStream" >
-                        <mat-radio-button class="example-radio-button" 
-                        *ngFor="let stream of streams" [value]="stream">
-                            {{stream}}
-                        </mat-radio-button>
-                    </mat-radio-group><br>
-                    <div>You are in {{favoriteStream}} Enginnering</div>
-                </td>
-            </tr>
-            <tr>
-                <mat-form-field>
-                    <mat-select [(value)]="selected" multiple formControlName="hobbies">
-                      <mat-select-trigger>
-                        {{selected ? selected : ''}}</mat-select-trigger>
-                      <mat-option *ngFor="let column of columns" 
-                      [value]="column.value" >{{column.label}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  
-                  <p>You selected: {{selected}}</p>
-            </tr>
-            <button mat-raised-button color="accent"  type="submit" 
-            >Submit</button>
-        </table>
+                <tr>
+                    <td>
+                        <label id="example-radio-group-label">Pick your stream</label><br>
+                        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                            formControlName="stream" [(ngModel)]="favoriteStream">
+                            <mat-radio-button class="example-radio-button" *ngFor="let stream of streams"
+                                [value]="stream">
+                                {{stream}}
+                            </mat-radio-button>
+                        </mat-radio-group><br>
+                        <div>You are in {{favoriteStream}} Enginnering</div>
+                    </td>
+                </tr>
+                <tr>
+                    <mat-form-field>
+                        <mat-select [(value)]="selected" multiple formControlName="hobbies">
+                            <mat-select-trigger>
+                                {{selected ? selected : ''}}</mat-select-trigger>
+                            <mat-option *ngFor="let column of columns" [value]="column.value">{{column.label}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <p>You selected: {{selected}}</p>
+                </tr>
+                <tr>
+                    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="100" step="1" min="0"
+                        max="100" aria-label="units" formControlName='percentage' [(ngModel)]="percentage"></mat-slider>
+                    <p>{{percentage}}</p>
+                    
+                </tr>
+                <button mat-raised-button color="accent" type="submit"> {{editMode ? 'update' : 'submit'}}</button>
+            </table>
         </form>
     </mat-card>
 </p>
-<button (click)="showFiller = !showFiller" mat-raised-button>
+<!-- <button (click)="showFiller = !showFiller" mat-raised-button>
     Add new entry
-</button>
+</button> -->

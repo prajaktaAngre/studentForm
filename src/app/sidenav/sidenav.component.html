@@ -1,7 +1,8 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value"
 >
     <mat-drawer #drawer [mode]="hasBackdrop.value">
-        <app-sidenav-form (newItemEvent)="addItem($event)"></app-sidenav-form>
+        <app-sidenav-form (newItemEvent)="addItem($event)" [editData]="data"
+        [editMode]="modeOn"></app-sidenav-form>
     </mat-drawer>
     <mat-drawer-content>
       <mat-form-field appearance="fill">
@@ -17,23 +18,24 @@
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
         <ng-container *ngFor="let stud of displayedColumns  ">
-          <!-- <ng-container *ngIf="stud!=='edit';else edittem ">
-            <ng-container *ngIf="stud!=='delete';else deleteitem "> -->
+          <ng-container *ngIf="stud!=='edit';else editItem ">
+            <ng-container *ngIf="stud!=='delete';else deleteitem ">
               <ng-container [matColumnDef]="stud">
                 <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
                 <td mat-cell *matCellDef="let element"> {{element[stud]}} </td>
+                
               </ng-container>
-            <!-- </ng-container>
-          </ng-container> -->
-          <!-- <ng-template #edittem>
+             </ng-container>
+          </ng-container> 
+          <ng-template #editItem>
             <ng-container [matColumnDef]="stud">
               <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
-              <td mat-cell *matCellDef="let itemb ; let i=index">
-                <button type="button" mat-raised-button color="primary" 
-                (click)="updateInfo(itemb)">edit</button>
+              <td mat-cell *matCellDef="let element;let i=index">
+                <button type="button" mat-raised-button color="primary" (click)="updateInfo(element)">edit</button>
               </td>
             </ng-container>
           </ng-template>
+         
           <ng-template #deleteitem>
             <ng-container [matColumnDef]="stud">
               <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
@@ -43,7 +45,7 @@
                 </button>
               </td>
             </ng-container>
-          </ng-template> -->
+          </ng-template>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

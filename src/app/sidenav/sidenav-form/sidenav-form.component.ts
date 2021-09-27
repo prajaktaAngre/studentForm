@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SidenavFormComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<string>();//send data of onsubmit method
-
+  @Input()  editData:any;   //catched data from edited mode on
+  @Input() editMode=false; //for switch on updte mode
   showFiller = false;
   favoriteStream=[];
   streams: string[] = ['Computer', 'Mechanical', 'Electrical', 'IT'];
@@ -23,12 +24,24 @@ export class SidenavFormComponent implements OnInit {
     name: new FormControl('', Validators.required),
     stream: new FormControl('', Validators.required),
     hobbies: new FormControl(''),
+    percentage:new FormControl(''),
     
   });
-  submitted=true;
-  position: number = 5;
+  submitted=false;
+  recordId: number =0;
+  percentage=65;
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + '%';
+    }
+
+    return value;
+  }
+  
+
+
   // methods
-  onSubmit(position: any) {
+  onSubmit(recordId: any) {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -38,8 +51,8 @@ export class SidenavFormComponent implements OnInit {
 
     else {
 
-      this.position = this.position + 1;
-      this.profileForm.value['position'] = this.position;
+      this.recordId = this.recordId + 1;
+      this.profileForm.value['recordId'] = this.recordId;
       console.log (this.profileForm.value);
       this.newItemEvent.emit(this.profileForm.value);
        console.log("newitemevent",this.newItemEvent)
@@ -49,12 +62,9 @@ export class SidenavFormComponent implements OnInit {
 
   }
   get f() { return this.profileForm.controls; }
- 
-  addNewItem(value: string) {
-    this.newItemEvent.emit(value);
-    console.log("newitemevent",this.newItemEvent)
-
-
+  ngOnChanges() {
+    console.log('edited data came for updation', this.editData);
+    this.profileForm.patchValue(this.editData)
   }
   constructor() { }
 

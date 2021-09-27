@@ -105,10 +105,10 @@ export class ReFormComponent implements OnInit, OnDestroy {
       const recordIndex = this.dataSource.findIndex((object: any) =>
         object.recordId == newItem.recordId
       )
-
+      console.log(recordIndex)
       console.log("myid", this.id);
       this.dataSource.splice(recordIndex, 1, newItem);
-      this.data = {};
+      this.data = {};//multiple updatees and edits
       this.modeOn = false;
       console.log("dataSource", this.dataSource)
 
