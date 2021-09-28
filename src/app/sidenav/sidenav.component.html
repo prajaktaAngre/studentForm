@@ -13,8 +13,8 @@
           <mat-option [value]="false">False</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button (click)="drawer.toggle()">Sidenav</button>
-
+      <button mat-raised-button (click)="drawer.toggle()">Add New Record</button>
+    
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
         <ng-container *ngFor="let stud of displayedColumns  ">
@@ -31,7 +31,7 @@
             <ng-container [matColumnDef]="stud">
               <th mat-header-cell *matHeaderCellDef> {{stud}} </th>
               <td mat-cell *matCellDef="let element;let i=index">
-                <button type="button" mat-raised-button color="primary" (click)="updateInfo(element)">edit</button>
+                <button type="button" mat-raised-button color="primary" (click)="updateInfo(element)" (click)="drawer.toggle()">edit</button>
               </td>
             </ng-container>
           </ng-template>

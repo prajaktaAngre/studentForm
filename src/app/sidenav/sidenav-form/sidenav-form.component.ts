@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { ErrorStateMatcher } from '@angular/material/core';
 @Component({
   selector: 'app-sidenav-form',
   templateUrl: './sidenav-form.component.html',
@@ -25,7 +25,8 @@ export class SidenavFormComponent implements OnInit {
     stream: new FormControl('', Validators.required),
     hobbies: new FormControl(''),
     percentage:new FormControl(''),
-    
+    telephone:new FormControl('', ),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
   submitted=false;
   recordId: number =0;
@@ -37,10 +38,11 @@ export class SidenavFormComponent implements OnInit {
 
     return value;
   }
-  
-
+  sidenav:any;
 
   // methods
+  
+
   onSubmit(recordId: any) {
     this.submitted = true;
 
@@ -50,21 +52,30 @@ export class SidenavFormComponent implements OnInit {
     }
 
     else {
+      if(this.editMode){
+        this.profileForm.value['recordId'] = this.editData.recordId;
+      }
 
-      this.recordId = this.recordId + 1;
-      this.profileForm.value['recordId'] = this.recordId;
+     
+      console.log("lastIndex id",recordId);
+      
+      // this.profileForm.value['recordId'] = this.recordId;
       console.log (this.profileForm.value);
       this.newItemEvent.emit(this.profileForm.value);
        console.log("newitemevent",this.newItemEvent)
      
       this.profileForm.reset()
+      // this.sidenav.close()
     }
 
   }
+  
   get f() { return this.profileForm.controls; }
   ngOnChanges() {
     console.log('edited data came for updation', this.editData);
     this.profileForm.patchValue(this.editData)
+    console.log(this.profileForm);
+    
   }
   constructor() { }
 

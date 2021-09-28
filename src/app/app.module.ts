@@ -47,6 +47,7 @@ import { PaginationTableComponent } from './pagination-table/pagination-table.co
 import { PaginationDataComponent } from './pagination-data/pagination-data.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavFormComponent } from './sidenav/sidenav-form/sidenav-form.component';
+import {MatToolbarModule} from '@angular/material/toolbar'; 
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { SidenavFormComponent } from './sidenav/sidenav-form/sidenav-form.compon
     MatExpansionModule,
     MatSidenavModule,
     MatSortModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

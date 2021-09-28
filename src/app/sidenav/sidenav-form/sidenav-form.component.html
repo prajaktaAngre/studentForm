@@ -1,7 +1,7 @@
 <p>Student Details</p>
-<p>
+<!-- <div #sidenav> -->
     <mat-card>
-        <form [formGroup]="profileForm" (ngSubmit)="onSubmit(recordId)">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit(recordId)" #sidenav>
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>
@@ -37,16 +37,57 @@
                     <p>You selected: {{selected}}</p>
                 </tr>
                 <tr>
+                    
+                        <td>
                     <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="100" step="1" min="0"
                         max="100" aria-label="units" formControlName='percentage' [(ngModel)]="percentage"></mat-slider>
                     <p>{{percentage}}</p>
-                    
+                </td>
+                <td><button mat-button [matMenuTriggerFor]="menu">College Names</button>
+                    <mat-menu #menu="matMenu">
+                    <button mat-menu-item>D.Y.Patil,kasaba bawada</button>
+                    <button mat-menu-item>D.Y.Patil,talsande</button>
+                    </mat-menu></td>
                 </tr>
-                <button mat-raised-button color="accent" type="submit"> {{editMode ? 'update' : 'submit'}}</button>
+                <tr>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Mobile Number</mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" formControlName="telephone"
+                        title="Error Message" pattern="[1-9]{1}[0-9]{9}" required>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                      </mat-form-field>
+                      <!-- <mat-form-field class="example-full-width">
+                        <input matInput placeholder="mobile" formControlName="telephone"> -->
+                        <!-- <mat-error *ngIf="profileForm.get('telephone').hasError('required')">
+                          mobile is Required!
+                        </mat-error> -->
+                    
+                        <!-- <mat-error *ngIf="profileForm.get('telephone').hasError('pattern')">
+                          First Name must follow this pattern!
+                        </mat-error> -->
+                      <!-- </mat-form-field> -->
+                </tr>
+                <tr>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Enter your email</mat-label>
+                        <input matInput placeholder="pat@example.com" formControlName="email" required name="email" id="email"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </mat-form-field>
+                </tr>
+                    
+                
+                <button mat-raised-button color="accent" type="submit" > 
+                    {{editMode ? 'update' : 'submit'}}</button>
+                   
+                  
             </table>
         </form>
+        
     </mat-card>
-</p>
-<!-- <button (click)="showFiller = !showFiller" mat-raised-button>
-    Add new entry
-</button> -->
+
+<!-- </div> -->
