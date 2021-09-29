@@ -1,7 +1,7 @@
 <p>Student Details</p>
-<!-- <div #sidenav> -->
+
     <mat-card>
-        <form [formGroup]="profileForm" (ngSubmit)="onSubmit(recordId)" #sidenav>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit(recordId,reason)" #sidenav>
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>
@@ -81,10 +81,9 @@
                 </tr>
                     
                 
-                <button mat-raised-button color="accent" type="submit" > 
+                <button mat-raised-button color="accent" type="submit" [class.active]="toggle"> 
                     {{editMode ? 'update' : 'submit'}}</button>
-                   
-                  
+   
             </table>
         </form>
         

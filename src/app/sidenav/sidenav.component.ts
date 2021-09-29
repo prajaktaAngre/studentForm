@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 export interface student {
   name: string;
@@ -32,7 +33,19 @@ export class SidenavComponent implements OnInit {
   data: any;
   id: any;
   checked=true;
-  // methods
+  SidebarOPen=true;
+  itemss: any;
+  reason = '';
+  @ViewChild('drawer')
+  MatDrawer!: MatDrawer;
+  close(reason: string) {
+    this.MatDrawer.close();
+  }
+  
+ 
+  addsidenav(sidenav: any) {
+    this.itemss.push(sidenav);
+  }
   addItem(newItem: any) {
     // this.dataSource.length=this.id;
     console.log("initial id",newItem.recordId)
@@ -56,6 +69,9 @@ export class SidenavComponent implements OnInit {
       this.dataSource = [...temp]
       
          console.log("data updated successuly", this.dataSource)
+         this.MatDrawer.close();
+         console.log(this.MatDrawer.opened);
+         
 
     }
     else if(newItem){
@@ -66,6 +82,7 @@ export class SidenavComponent implements OnInit {
          this.dataSource = [...tempArray]
          console.log("data emits successuly", newItem)
          console.log("items",this.dataSource)
+         this.MatDrawer.close();
     }
 
   }
@@ -88,7 +105,8 @@ export class SidenavComponent implements OnInit {
      console.log("after",this.dataSource);
       
      }
-  constructor() { }
+    
+
 
   ngOnInit(): void {
     this.dataSource;

@@ -3,26 +3,31 @@
     <a class="nav-link" routerLinkActive="active" routerLink="/students">students</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link"  routerLink="/reusable">reusuable-header</a>
+    <a class="nav-link" routerLink="/reusable">reusuable-header</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link"  routerLink="/tree">tree-table</a>
+    <a class="nav-link" routerLink="/tree">tree-table</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link"  routerLink="/mat-component">mat-components</a>
+    <a class="nav-link" routerLink="/mat-component">mat-components</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link"  routerLink="/layout1">layout-one</a>
+    <a class="nav-link" routerLink="/layout1">layout-one</a>
   </li>
   <!-- <li class="nav-item">
     <a class="nav-link"  routerLink="/Pagination">Pagination-table</a>
   </li> -->
-   <li class="nav-item">
-    <a class="nav-link"  routerLink="/sidenav">sidenav</a>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/sidenav">sidenav</a>
   </li>
 </ul>
-<router-outlet></router-outlet>
 
 
-
-
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer>
+    <app-sidenav-form></app-sidenav-form>
+    <button mat-button class="float-right" (click)=drawer.close()>Close Sidebar</button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button (click)="drawer.open()" class="mb-3">Add New Record</button>
+    <router-outlet></router-outlet>

@@ -1,10 +1,11 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value"
->
+<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value">
+ 
     <mat-drawer #drawer [mode]="hasBackdrop.value">
         <app-sidenav-form (newItemEvent)="addItem($event)" [editData]="data"
-        [editMode]="modeOn"></app-sidenav-form>
+        [editMode]="modeOn"   (sidenavIem)="addsidenav($event)"></app-sidenav-form>
+       <button mat-button (click)="close('toggle button')" class="float-right">Close Sidebar</button>
     </mat-drawer>
-    <mat-drawer-content>
+    <mat-drawer-content isOpen="true">
       <mat-form-field appearance="fill">
         <mat-label>Has backdrop</mat-label>
         <mat-select #hasBackdrop>
@@ -13,9 +14,9 @@
           <mat-option [value]="false">False</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button (click)="drawer.toggle()">Add New Record</button>
-    
-
+      <button mat-raised-button (click)="drawer.open()">Add New Record</button>
+<!-- <button opened = !this.opened (click)="onclick()">click</button>opened -->
+ 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
         <ng-container *ngFor="let stud of displayedColumns  ">
           <ng-container *ngIf="stud!=='edit';else editItem ">
@@ -52,4 +53,6 @@
       </table>
     </mat-drawer-content>
   </mat-drawer-container>
+  <!-- <button id="close"  class="close-btn">Close Sidebar</button> -->
+                  
   
