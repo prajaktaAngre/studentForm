@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { SidenavService } from './sidenav.service';
 
 @Component({
@@ -9,24 +10,33 @@ import { SidenavService } from './sidenav.service';
 export class AppComponent implements OnInit{
   title = 'form1';
   subscription: any;
-  recordId:number=0;
+  // recordId:any
   reason='';
-  constructor(public submitDataReceive:SidenavService){}
+  meesage: any;
+  sidenavSubscription: any;
+  dataSource:any;
+  @ViewChild('drawer')
+  MatDrawer!: MatDrawer;
+  
+  
+  constructor(public parentMsg:SidenavService){}
   ngOnInit(){
-    this.subscription=this.submitDataReceive.submitDataSend.subscribe((msgToShow:any)=>{
-      console.log("receive Submited data in service",msgToShow)
-      
-      
+    // this.subscription=this.parentMsg.onSubmitReturn().subscribe(()=>{
+    //   console.log("receive Submited data in service",)
+    //   this.dataSource.push()
+            
+    // })
+    this.sidenavSubscription=this.parentMsg.sidenavOpenReturn().subscribe((value)=>{
+      console.log("sidenavOpenReturn",value)
+      this.MatDrawer.open();
     })
-  }
-  submitedData(){
-    // this.submitDataReceive.onSubmit(this.recordId,this.reason).subscribe((data: any)=>{
-    //   console.log('submited data using service',data)
 
-    //   })
+    
   }
+  
+}
 
-  }
+  
 
 
 

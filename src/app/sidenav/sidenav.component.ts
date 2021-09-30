@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { formatCurrency } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { SidenavService } from '../sidenav.service';
 
 export interface student {
   name: string;
@@ -24,7 +26,7 @@ const ELEMENT_DATA: student[] = [
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit , OnDestroy{
   displayedColumns: string[] = ['recordId', 'name', 'stream', 'hobbies','percentage','telephone','email','edit','delete'];
   dataSource = ELEMENT_DATA;
   items: any = [];
@@ -36,8 +38,11 @@ export class SidenavComponent implements OnInit {
   SidebarOPen=true;
   itemss: any;
   reason = '';
+  students:any=[];
   @ViewChild('drawer')
   MatDrawer!: MatDrawer;
+  subscription: any;
+  constructor(public parentMsg:SidenavService) { }
   close(reason: string) {
     this.MatDrawer.close();
   }
@@ -47,7 +52,7 @@ export class SidenavComponent implements OnInit {
     this.itemss.push(sidenav);
   }
   addItem(newItem: any) {
-    // this.dataSource.length=this.id;
+    // this.parentMsg.onSubmit()
     console.log("initial id",newItem.recordId)
 
     if ( this.modeOn === true) {
@@ -106,13 +111,27 @@ export class SidenavComponent implements OnInit {
       
      }
     
+     onclick(){
+     this.parentMsg.sidenavOpen()
 
-
-  ngOnInit(): void {
-    this.dataSource;
-  
-     console.log(this.dataSource)
+     }
     
+  ngOnInit(): void {
+     console.log(this.dataSource)
+     this.subscription=this.parentMsg.onSubmitReturn().subscribe((msgToShow)=>{
+      console.log("receive Submited data in service",msgToShow)
+      this.student.push(msgToShow)
+       this.dataSource = [...this.student];
+      console.log(this.dataSource)
+     
+            
+    })
+    
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
+
+

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { SidenavService } from 'src/app/sidenav.service';
 @Component({
   selector: 'app-sidenav-form',
   templateUrl: './sidenav-form.component.html',
@@ -12,13 +13,12 @@ export class SidenavFormComponent implements OnInit {
   @Input()  editData:any;   //catched data from edited mode on
   @Input() editMode=false; //for switch on updte mode
   @ViewChild('closebutton') closebutton:any;
-  
   @Input() opened:boolean=true;
-  
   @Output() sidenav = new EventEmitter(); 
-  reason = '';
   @ViewChild('drawer')
   MatDrawer!: MatDrawer;
+  meesage: any;
+  reason = '';
   close(reason: string) {
     this.reason = reason;
     this.MatDrawer.close();
@@ -45,52 +45,35 @@ export class SidenavFormComponent implements OnInit {
   submitted=false;
   recordId: number =0;
   percentage=65;
-  // reason = '';
-  // @ViewChild('drawer')
-  // MatDrawer!: MatDrawer;
-  // close(reason: string) {
-  //   this.reason = reason;
-  //   this.MatDrawer.close();
-  // }
- 
   formatLabel(value: number) {
     if (value >= 1000) {
       return Math.round(value / 1000) + '%';
     }
-
     return value;
   }
- 
+  constructor(public parentMsg:SidenavService) { }
 
+  ngOnInit(): void {
+    //  service methods
+    
+  }
   // methods
-  
-
   onSubmit(recordId: any,reason: string) {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.profileForm.invalid) {
       return;
     }
-
     else {
       if(this.editMode){
         this.profileForm.value['recordId'] = this.editData.recordId;
       }
-
-     
-      console.log("lastIndex id",recordId);
-      
+      console.log("lastIndex id",recordId); 
       // this.profileForm.value['recordId'] = this.recordId;
       console.log (this.profileForm.value);
       this.newItemEvent.emit(this.profileForm.value);
        console.log("newitemevent",this.newItemEvent)
-      
       this.profileForm.reset()
-      // this.closebutton.nativeElement.click();
-      // this.onClose.emit();
-      // this.newItemEvent.closed;
-      // this.sidenav.close()
       this.opened=false
       console.log(this.opened);
       this.sidenav.emit(value);
@@ -99,13 +82,9 @@ export class SidenavFormComponent implements OnInit {
       this.toggle = !this.toggle;
       console.log('Clicked',this.toggle);
       this.reason = reason;
-      // this.MatDrawer.close();
+     this.parentMsg.onSubmit();
       
-    }
-
-  }
- 
-  
+    } }
   get f() { return this.profileForm.controls; }
   ngOnChanges() {
     console.log('edited data came for updation', this.editData);
@@ -113,10 +92,7 @@ export class SidenavFormComponent implements OnInit {
     console.log(this.profileForm);
     
   }
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  
 
 }
 function value(value: any) {

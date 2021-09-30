@@ -15,7 +15,7 @@
         </mat-select>
       </mat-form-field>
       <button mat-raised-button (click)="drawer.open()">Add New Record</button>
-<!-- <button opened = !this.opened (click)="onclick()">click</button>opened -->
+      <button  mat-raised-button (click)="onclick()">click</button>
  
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
         <ng-container *ngFor="let stud of displayedColumns  ">
