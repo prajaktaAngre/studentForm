@@ -11,14 +11,16 @@ export class SidenavService {
    perentMsg$=this.parentMsg.asObservable();
   constructor() { }
   // for submit data 
-  onSubmit() {
-    // let data={recordId:recordId,reason:reason}
-     this.parentMsg.next()
+  onSubmit(profileForm:any) {
+    // let data={profileForm}
+    console.log(profileForm);
+    
+     this.parentMsg.next(profileForm)
     //  return this.parentMsg.asObservable()
     console.log(this.parentMsg);
     
   }
-  onSubmitReturn(){
+  onSubmitReturn():Observable<any>{
     return this.parentMsg.asObservable()
   }
   // for addNewItem 

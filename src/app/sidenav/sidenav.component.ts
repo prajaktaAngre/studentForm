@@ -1,4 +1,4 @@
-import { formatCurrency } from '@angular/common';
+
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { SidenavService } from '../sidenav.service';
@@ -39,9 +39,12 @@ export class SidenavComponent implements OnInit , OnDestroy{
   itemss: any;
   reason = '';
   students:any=[];
+  // recordId=0;/
   @ViewChild('drawer')
   MatDrawer!: MatDrawer;
   subscription: any;
+  recordId:any;
+  profileFom: any;
   constructor(public parentMsg:SidenavService) { }
   close(reason: string) {
     this.MatDrawer.close();
@@ -62,7 +65,7 @@ export class SidenavComponent implements OnInit , OnDestroy{
           
       )
       console.log(recordIndex)
-         console.log(newItem)
+      console.log(newItem)
       console.log();
       
       this.dataSource.splice(recordIndex, 1, newItem);
@@ -120,10 +123,36 @@ export class SidenavComponent implements OnInit , OnDestroy{
      console.log(this.dataSource)
      this.subscription=this.parentMsg.onSubmitReturn().subscribe((msgToShow)=>{
       console.log("receive Submited data in service",msgToShow)
-      this.student.push(msgToShow)
-       this.dataSource = [...this.student];
-      console.log(this.dataSource)
+      msgToShow['recordId'] = this.dataSource.length+1;
+      console.log(msgToShow);
+      this.dataSource.push(msgToShow)
+      console.log(this.dataSource);
+      let tempArray = this.dataSource;
+      this.dataSource = [...tempArray]
      
+      // code for update data 
+      
+        if(this.modeOn){
+          let temp = this.dataSource;
+          const recordIndex = this.dataSource.findIndex((object: any) => 
+             object.recordId == msgToShow.recordId  //3
+              
+          )
+          console.log(recordIndex)
+          console.log(msgToShow)
+          console.log();
+          
+          this.dataSource.splice(recordIndex, 1, msgToShow);
+          this.data = {};//multiple updatees and edits
+          this.modeOn = false;
+          console.log("dataSource", this.dataSource)
+          
+         
+          this.dataSource = [...temp]
+          
+             console.log("data updated successuly", this.dataSource)
+             this.MatDrawer.close();
+        }
             
     })
     

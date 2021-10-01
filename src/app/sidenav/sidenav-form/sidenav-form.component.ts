@@ -34,6 +34,7 @@ export class SidenavFormComponent implements OnInit {
                       {value:'coding',label:'coding'}];
   modeOn: boolean = true;
   userOptions='';
+  edited=false;
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
     stream: new FormControl('', Validators.required),
@@ -68,21 +69,15 @@ export class SidenavFormComponent implements OnInit {
       if(this.editMode){
         this.profileForm.value['recordId'] = this.editData.recordId;
       }
-      console.log("lastIndex id",recordId); 
-      // this.profileForm.value['recordId'] = this.recordId;
       console.log (this.profileForm.value);
       this.newItemEvent.emit(this.profileForm.value);
-       console.log("newitemevent",this.newItemEvent)
-      this.profileForm.reset()
-      this.opened=false
-      console.log(this.opened);
-      this.sidenav.emit(value);
-      console.log(this.sidenav);
-      console.log('Clicked');
-      this.toggle = !this.toggle;
-      console.log('Clicked',this.toggle);
+       console.log("newitemevent",this.newItemEvent)     
       this.reason = reason;
-     this.parentMsg.onSubmit();
+     this.parentMsg.onSubmit(this.profileForm.value);
+     console.log(this.profileForm.value);
+     
+     this.profileForm.reset()
+     
       
     } }
   get f() { return this.profileForm.controls; }
