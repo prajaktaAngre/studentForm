@@ -24,11 +24,12 @@ export class SidenavService {
     return this.parentMsg.asObservable()
   }
   // for addNewItem 
-  sidenavOpen(){
-    this.sidenavFlag.next(true)
+  sidenavOpen(drawer:any){
+    this.sidenavFlag.next(drawer)
   }
   sidenavOpenReturn(){
     return this.sidenavFlag.asObservable()
   }
- 
+  // sidenav close 
+  
 }

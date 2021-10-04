@@ -59,37 +59,29 @@ export class SidenavComponent implements OnInit , OnDestroy{
     console.log("initial id",newItem.recordId)
 
     if ( this.modeOn === true) {
-      let temp = this.dataSource;
-      const recordIndex = this.dataSource.findIndex((object: any) => 
-         object.recordId == newItem.recordId  //3
-          
-      )
-      console.log(recordIndex)
-      console.log(newItem)
-      console.log();
-      
-      this.dataSource.splice(recordIndex, 1, newItem);
-      this.data = {};//multiple updatees and edits
-      this.modeOn = false;
-      console.log("dataSource", this.dataSource)
-      
-     
-      this.dataSource = [...temp]
-      
-         console.log("data updated successuly", this.dataSource)
-         this.MatDrawer.close();
-         console.log(this.MatDrawer.opened);
-         
-
+      // let temp = this.dataSource;
+      // const recordIndex = this.dataSource.findIndex((object: any) => 
+      //    object.recordId == newItem.recordId  //3 
+      // )
+      // console.log(recordIndex)
+      // console.log(newItem)
+      // console.log();
+      // this.dataSource.splice(recordIndex, 1, newItem);
+      // this.data = {};//multiple updatees and edits
+      // this.modeOn = false;
+      // console.log("dataSource", this.dataSource)
+      // this.dataSource = [...temp]
+      // console.log("data updated successuly", this.dataSource)
+      // this.MatDrawer.close();
     }
     else if(newItem){
-         newItem.recordId=this.dataSource.length+1;
-        console.log('after length',newItem.recordId);
-         let tempArray = this.dataSource;
-         tempArray.push(newItem)
-         this.dataSource = [...tempArray]
-         console.log("data emits successuly", newItem)
-         console.log("items",this.dataSource)
+        //  newItem.recordId=this.dataSource.length+1;
+        // console.log('after length',newItem.recordId);
+        //  let tempArray = this.dataSource;
+        //  tempArray.push(newItem)
+        //  this.dataSource = [...tempArray]
+        //  console.log("data emits successuly", newItem)
+        //  console.log("items",this.dataSource)
          this.MatDrawer.close();
     }
 
@@ -115,43 +107,51 @@ export class SidenavComponent implements OnInit , OnDestroy{
      }
     
      onclick(){
-     this.parentMsg.sidenavOpen()
+     this.parentMsg.sidenavOpen(true)
 
      }
     
   ngOnInit(): void {
      console.log(this.dataSource)
      this.subscription=this.parentMsg.onSubmitReturn().subscribe((msgToShow)=>{
-      console.log("receive Submited data in service",msgToShow)
-      msgToShow['recordId'] = this.dataSource.length+1;
-      console.log(msgToShow);
-      this.dataSource.push(msgToShow)
-      console.log(this.dataSource);
-      let tempArray = this.dataSource;
-      this.dataSource = [...tempArray]
+      if(this.modeOn){
+        let temp = this.dataSource;
+        const recordIndex = this.dataSource.findIndex((object: any) => 
+           object.recordId == msgToShow.recordId  //3
+            
+        )
+        console.log(recordIndex)
+        console.log(msgToShow)
+        console.log();
+        
+        this.dataSource.splice(recordIndex, 1, msgToShow);
+        this.data = {};//multiple updatees and edits
+        this.modeOn = false;
+        console.log("dataSource", this.dataSource)
+        
+       
+        this.dataSource = [...temp]
+        
+           console.log("data updated successuly", this.dataSource)
+           this.MatDrawer.close();
+      }
      
       // code for update data 
       
-        if(this.modeOn){
-          let temp = this.dataSource;
-          const recordIndex = this.dataSource.findIndex((object: any) => 
-             object.recordId == msgToShow.recordId  //3
-              
-          )
-          console.log(recordIndex)
-          console.log(msgToShow)
-          console.log();
-          
-          this.dataSource.splice(recordIndex, 1, msgToShow);
-          this.data = {};//multiple updatees and edits
-          this.modeOn = false;
-          console.log("dataSource", this.dataSource)
-          
-         
-          this.dataSource = [...temp]
-          
-             console.log("data updated successuly", this.dataSource)
-             this.MatDrawer.close();
+       
+        else{
+          console.log("receive Submited data in service",msgToShow)
+          msgToShow['recordId'] = this.dataSource.length+1;
+          console.log(msgToShow);
+          this.dataSource.push(msgToShow)
+          // this.MatDrawer.close();
+          console.log(this.dataSource);
+          let tempArray = this.dataSource;
+          this.dataSource = [...tempArray]
+          console.log(this.dataSource);
+          this.parentMsg.sidenavOpen(MatDrawer)
+          this.MatDrawer.close(); 
+          // this.MatDrawer.toggle();
         }
             
     })

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { SidenavService } from './sidenav.service';
 
@@ -7,7 +7,7 @@ import { SidenavService } from './sidenav.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
   title = 'form1';
   subscription: any;
   // recordId:any
@@ -17,21 +17,33 @@ export class AppComponent implements OnInit{
   dataSource:any;
   @ViewChild('drawer')
   MatDrawer!: MatDrawer;
-  
-  
+  modeOn=false;
+  submit:any
+  // MatDrawer:boolean=true
   constructor(public parentMsg:SidenavService){}
+  addsidenav(event:any){
+    this.MatDrawer.close();
+    // this.parentMsg.sidenavOpen(false)
+  }
   ngOnInit(){
-    // this.subscription=this.parentMsg.onSubmitReturn().subscribe(()=>{
-    //   console.log("receive Submited data in service",)
-    //   this.dataSource.push()
-            
-    // })
+   
     this.sidenavSubscription=this.parentMsg.sidenavOpenReturn().subscribe((value)=>{
       console.log("sidenavOpenReturn",value)
+      // if(){
+      //   this.MatDrawer.open();
+      // }
+      // else{
       this.MatDrawer.open();
-    })
+      // }
+     
 
+    })
+   
     
+     
+  }
+  ngOnDestroy(){
+    this.sidenavSubscription.unsubscribe();
   }
   
 }

@@ -1,3 +1,4 @@
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -14,7 +15,8 @@ export class SidenavFormComponent implements OnInit {
   @Input() editMode=false; //for switch on updte mode
   @ViewChild('closebutton') closebutton:any;
   @Input() opened:boolean=true;
-  @Output() sidenav = new EventEmitter(); 
+  @Output() sidenav = new EventEmitter();
+  @Output() matDrawerClose=new EventEmitter();
   @ViewChild('drawer')
   MatDrawer!: MatDrawer;
   meesage: any;
@@ -77,9 +79,18 @@ export class SidenavFormComponent implements OnInit {
      console.log(this.profileForm.value);
      
      this.profileForm.reset()
+     this.parentMsg.sidenavOpen(false)
+     this.matDrawerClose.emit(value)
+     console.log("matdrawerclose",value);
      
       
-    } }
+    } 
+    }
+    closeDrawer(value1:any){
+      this.matDrawerClose.emit(value1)
+      console.log("value1", value1);
+      
+    }
   get f() { return this.profileForm.controls; }
   ngOnChanges() {
     console.log('edited data came for updation', this.editData);
